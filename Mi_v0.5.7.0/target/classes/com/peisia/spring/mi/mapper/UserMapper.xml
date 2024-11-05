@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.peisia.spring.mi.mapper.UserMapper">
+
+	<!-- 
+		회원가입 쿼리
+		- tbl_user 테이블에 새 사용자를 삽입합니다.
+		- #{userName}, #{id}, #{pw}, #{email}는 각각 사용자 이름, ID, 비밀번호, 이메일을 의미합니다.
+	-->
+	<insert id="register">
+		insert into tbl_user (userName, id, pw, email) values (#{userName}, #{id}, #{pw}, #{email})
+	</insert>
+
+	<!-- 
+		로그인 쿼리
+		- tbl_user 테이블에서 사용자의 ID와 비밀번호를 기준으로 조회하여 로그인합니다.
+		- 일치하는 사용자가 있을 경우 해당 사용자의 정보를 UserDto 타입으로 반환합니다.
+	-->
+	<select id="login" resultType="com.peisia.dto.UserDto">
+		select * from tbl_user
+		where id = #{id} and pw = #{pw}
+	</select>
+
+</mapper>
